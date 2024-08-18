@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Solar System Clock</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #111;
+            color: white;
+            font-family: Arial, sans-serif;
+        }
+
+        .clock-container {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .time, .date, .day-night {
+            font-size: 1.5rem;
+            margin: 5px 0;
+        }
+
+        .reminders {
+            font-size: 1rem;
+            margin-top: 10px;
+        }
+
+        .solar-system-container {
+            display: flex;
+            position: relative;
+            width: 600px;
+            height: 600px;
+            margin-bottom: 20px;
+        }
+
+        .solar-system {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .orbit {
+            position: absolute;
+            border: 1px dashed rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+        }
+
+        .planet {
+            position: absolute;
+            border-radius: 50%;
+        }
+
+        #mercury { background-color: #999; width: 10px; height: 10px; animation: rotate 2s linear infinite; }
+        #venus { background-color: #d4a373; width: 15px; height: 15px; animation: rotate 3s linear infinite; }
+        #earth { background-color: #1f77b4; width: 20px; height: 20px; animation: rotate 4s linear infinite; }
+        #mars { background-color: #d62728; width: 15px; height: 15px; animation: rotate 5s linear infinite; }
+        #jupiter { background-color: #9467bd; width: 30px; height: 30px; animation: rotate 6s linear infinite; }
+        #saturn { background-color: #ff7f0e; width: 25px; height: 25px; animation: rotate 7s linear infinite; }
+        #uranus { background-color: #2ca02c; width: 20px; height: 20px; animation: rotate 8s linear infinite; }
+        #neptune { background-color: #17becf; width: 20px; height: 20px; animation: rotate 9s linear infinite; }
+
+        .moon {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: gray;
+            top: 5px;
+            left: 25px;
+            animation: moonRotate 4s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg) translateX(150px) rotate(0deg); }
+            to { transform: rotate(360deg) translateX(150px) rotate(-360deg); }
+        }
+
+        @keyframes moonRotate {
+            from { transform: rotate(0deg) translateX(15px) rotate(0deg); }
+            to { transform: rotate(360deg) translateX(15px) rotate(-360deg); }
+        }
+
+        .info-container {
+            margin-top: 20px;
+            max-width: 800px;
+            text-align: left;
+            font-size: 1rem;
+            line-height: 1.5;
+        }
+
+        .info-container h2 {
+            margin-bottom: 10px;
+        }
+
+        .info-container p {
+            margin-bottom: 10px;
+        }
+
+        .info-container ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+
+        .info-container ul li {
+            margin-bottom: 5px;
+        }
+
+        .info-container ul li span {
+            font-weight: bold;
+            color: #ccc;
+        }
+    </style>
+</head>
+<body>
+    <div class="clock-container">
+        <div class="time" id="time"></div>
+        <div class="date" id="date"></div>
+        <div class="day-night" id="day-night"></div>
+        <div class="reminders" id="reminders"></div>
+    </div>
+    <div class="solar-system-container">
+        <div class="solar-system">
+            <div class="orbit" style="width: 70px; height: 70px;"></div>
+            <div class="planet" id="mercury"></div>
+
+            <div class="orbit" style="width: 100px; height: 100px;"></div>
+            <div class="planet" id="venus"></div>
+
+            <div class="orbit" style="width: 150px; height: 150px;"></div>
+            <div class="planet" id="earth">
+                <div class="moon" id="moon"></div>
+            </div>
+
+            <div class="orbit" style="width: 200px; height: 200px;"></div>
+            <div class="planet" id="mars"></div>
+
+            <div class="orbit" style="width: 250px; height: 250px;"></div>
+            <div class="planet" id="jupiter"></div>
+
+            <div class="orbit" style="width: 300px; height: 300px;"></div>
+            <div class="planet" id="saturn"></div>
+
+            <div class="orbit" style="width: 350px; height: 350px;"></div>
+            <div class="planet" id="uranus"></div>
+
+            <div class="orbit" style="width: 400px; height: 400px;"></div>
+            <div class="planet" id="neptune"></div>
+
+            <div class="sun" id="sun"></div>
+        </div>
+    </div>
+    <div class="info-container">
+        <h2>Understanding the Solar System</h2>
+        <p>The solar system consists of the Sun and the celestial objects bound to it by gravity. The eight planets, along with their moons, revolve around the Sun in their respective orbits. The distance between planets is vast, often measured in astronomical units or light-years.</p>
+
+        <h3>What is a Light-Year?</h3>
+        <p>A light-year is a measure of distance, not time. It represents the distance that light travels in one year, approximately 5.88 trillion miles (9.46 trillion kilometers).</p>
+
+        <h3>Planetary Information:</h3>
+        <ul>
+            <li><span>Mercury:</span> The smallest planet in our solar system, closest to the Sun.</li>
+            <li><span>Venus:</span> Similar in size to Earth, Venus is known for its thick, toxic atmosphere.</li>
+            <li><span>Earth:</span> Our home planet, the only known world with liquid water and life.</li>
+            <li><span>Mars:</span> Known as the Red Planet, Mars has the largest volcano and canyon in the solar system.</li>
+            <li><span>Jupiter:</span> The largest planet, a gas giant with a famous Great Red Spot, a giant storm.</li>
+            <li><span>Saturn:</span> Famous for its beautiful ring system, made up of ice and rock particles.</li>
+            <li><span>Uranus:</span> An ice giant with a unique tilt that makes it rotate on its side.</li>
+            <li><span>Neptune:</span> The farthest planet from the Sun, known for its deep blue color and strong winds.</li>
+        </ul>
+    </div>
+    <script>
+        function updateTime() {
+            const now = new Date();
+            const timeElement = document.getElementById('time');
+            const dateElement = document.getElementById('date');
+            const dayNightElement = document.getElementById('day-night');
+            
+            const hours = now.getHours();
+            const isDay = hours >= 6 && hours < 18;
+            
+            timeElement.textContent = now.toLocaleTimeString();
+            dateElement.textContent = now.toDateString();
+            dayNightElement.textContent = isDay ? 'Daytime' : 'Nighttime';
+            dayNightElement.style.color = isDay ? 'yellow' : 'white';
+        }
+
+        function updateMoonPhase() {
+            const moonElement = document.getElementById('moon');
+            const dayOfMonth = new Date().getDate();
+            const phase = (dayOfMonth % 29) / 29;
+            moonElement.style.backgroundColor = `rgba(255, 255, 255, ${phase})`;
+        }
+
+        function updateReminders() {
+            const remindersElement = document.getElementById('reminders');
+            const today = new Date().toDateString();
+            
+            const reminders = {
+                "August 19, 2024": ["Start of Fall Semester"],
+                "August 25, 2024": ["Submit Project Proposal"],
+                // Add more reminders here
+            };
+            
+            const todayReminders = reminders[today];
+            
+            if (todayReminders) {
+                remindersElement.textContent = `Reminders: ${todayReminders.join(", ")}`;
+            } else {
+                remindersElement.textContent = "No reminders for today.";
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            updateTime();
+            updateMoonPhase();
+            updateReminders();
+            
+            setInterval(updateTime, 1000);
+        });
+    </script>
+</body>
+</html>
+
